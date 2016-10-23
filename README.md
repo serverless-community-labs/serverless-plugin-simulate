@@ -5,8 +5,8 @@ Replicates Amazon API Gateway using docker images to run lambda
 - docker - https://docs.docker.com/engine/installation/
 
 ## Getting started
-`npm install` - Installs all dependencies
-`npm start` - Starts server listing at http://localhost:4000
+- `npm install` - Installs all dependencies
+- `npm start` - Starts server listing at http://localhost:4000
 
 ## Acknowledgements
 This would not be possible without [lambci](http://lambci.org/)
