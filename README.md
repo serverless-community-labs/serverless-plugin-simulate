@@ -7,6 +7,7 @@ Replicates Amazon API Gateway using docker images to run lambda
 ## Getting started
 - `npm install` - Installs all dependencies
 - `npm start` - Starts server listing at http://localhost:4000
+- `npm test` - tests custom authorizer (Authorization:TOKEN 12345)
 
 ## Acknowledgements
 This would not be possible without [lambci](http://lambci.org/)

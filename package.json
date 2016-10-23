@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "install": "docker pull lambci/lambda",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "test": "curl --header \"Authorization:TOKEN 12345\" http://localhost:4000"
   },
   "author": "",
   "license": "MIT",
