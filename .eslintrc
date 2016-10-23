@@ -1,0 +1,19 @@
+{
+  "env": {
+    "node": true
+  },
+  "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {
+          "jsx": true
+      }
+  },
+  "rules": {
+    // http://eslint.org/docs/rules/semi
+    // no semi-colons (YOLO) .. if you really want semicolons, remove this rule and run
+    // '.\node_modules\.bin\eslint --fix src' from the app root to re-add
+    "semi": [ 2, "never" ],
+    "comma-dangle": ["error", "always-multiline"]
+  }
+}
