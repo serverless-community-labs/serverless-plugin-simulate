@@ -1,5 +1,5 @@
 # Serverless docker
-Replicates Amazon API Gateway using docker images to run lambda 
+This is a proof of concept to see if we can replicate Amazon API Gateway using docker images to run lambda 
 
 ## Prerequisite
 - docker - https://docs.docker.com/engine/installation/
