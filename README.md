@@ -13,4 +13,4 @@ Replicates Amazon API Gateway using docker images to run lambda
 This would not be possible without [lambci](http://lambci.org/)
 - [docker-lambda](https://github.com/lambci/docker-lambda) - Docker images and test runners that replicate the live AWS Lambda environment
 
-@johncmckim for suggesting the idea
+[@johncmckim](https://github.com/johncmckim) for suggesting the idea
