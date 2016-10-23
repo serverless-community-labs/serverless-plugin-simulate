@@ -1,6 +1,16 @@
 # Serverless docker
 This is a proof of concept to see if we can replicate Amazon API Gateway using docker images to run lambda 
 
+###Features:
+
+- λ runtimes **supported** _by docker-lambda._
+- Authorizer 
+  - Custom Authorizer **supported** 
+  - Coginito Authorizer **not implemented yet**
+- Lambda Integration
+  - _Velocity templates support._ **not implemented yet**
+- Lambda Proxy Integration. **supported**
+
 ## Prerequisite
 - docker - https://docs.docker.com/engine/installation/
 
