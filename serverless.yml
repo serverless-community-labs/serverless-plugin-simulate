@@ -1,0 +1,34 @@
+service: docker
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+  region: 'us-east-1'
+  stage: 'dev'
+
+plugins:
+  - serverless-docker
+
+functions:
+  authorizer:
+    handler: functions/authorizer.handler
+    type: 'TOKEN'
+    identitySource: method.request.header.Authorization
+    
+  lists:
+    handler: functions/index.handler
+    events: 
+      - http:
+          path: lists
+          method: GET
+          authorizer: 
+            name: authorizer
+            type: 'TOKEN'
+            identitySource: method.request.header.Authorization
+      - http:
+          path: lists
+          method: POST
+          authorizer: authorizer
+      - http:
+          path: lists
+          method: PUT

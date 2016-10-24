@@ -1,91 +1,76 @@
 'use strict'
 
-const path = require('path')
 const BbPromise = require('bluebird')
-const express = require('express')
-const bodyParser = require('body-parser')
 
-const serverless = require('./src/serverless')
-const authorizer = require('./src/authorizer')
-const lambda = require('./src/lambda-invoke')
-const integration = require('./src/integration')
+const run = require('./lib/run')
+const serve = require('./lib/serve')
 
-const server = express()
+class Simulate {
+  constructor(serverless, options) {
+    this.serverless = serverless
+    this.options = options
+    
+    Object.assign(
+      this,
+      run,
+      serve
+    )
 
-server.use(bodyParser.json())
-server.use(bodyParser.urlencoded({ extended: true }))
+    this.commands = {
+      simulate: {
+        usage: 'Simulate λ locally',
+        lifecycleEvents: [
+          'invoke',
+        ],
+        options: {
+          path: {
+            usage: 'Path to handlers directory',
+            shortcut: 'i',
+          },
+        },
+        commands: {
+          invoke: {
+            usage: 'Run a λ function locally',
+            lifecycleEvents: [
+              'invoke',
+            ],
+            options: {
+              function: {
+                usage: 'Name of the function',
+                shortcut: 'f',
+                required: true,
+              },
+              path: {
+                usage: 'Path to JSON file holding input data',
+                shortcut: 'p',
+              },
+            },
+          },
+          serve: {
+            usage: 'Simulate the API Gateway and serves λ locally',
+            lifecycleEvents: [
+              'serve',
+            ],
+            options: {
+              port: {
+                usage: 'Port to listen on. Default: 3000',
+                shortcut: 'p',
+              },
+            },
+          },
+        },
+      },
+    }
+  
+    this.hooks = {
+      'simulate:invoke:invoke': () => BbPromise.bind(this)
+        .then(this.run)
+        .then(out => this.serverless.cli.consoleLog(out)),
 
-const options = {
-  region: 'us-east-1',
-  stage: 'dev',
-  path: path.join(process.cwd(), 'functions'),
-  functions: {
-    authorizer: {
-      type: 'custom',
-      handler: 'authorizer.index',
-    },
-    getAll: {
-      handler: 'index.handler',
-      events: [{
-        type: 'http',
-        method: 'GET',
-        cors: true,
-        authorizer: 'authorizer',
-      }],
-    },
-  },
+       'simulate:serve:serve': () => BbPromise.bind(this)
+         .then(this.serve),
+    }
+  }
 }
 
-// serverless middleware to setup lambda context
-server.use((req, res, next) => 
-  serverless.fetch(options, req)
-    .then(context => {
-      req.context = context
-      next()
-      return BbPromise.resolve()
-    })
-    .catch(err => {
-      console.log(err.stack)
-    })
-  )
-
-// api gateway authorization 
-// - custom authorizer
-server.use((req, res, next) => { 
-  if (!req.context.authorizer) 
-    next()
-
-  const token = req.get(req.context.authorizer.identitySource)
-  authorizer.authorize(req.context, token)
-    .then(result => {
-      req.context.authorizer = Object.assign({}, req.context.authorizer, result)
-      next()
-      return BbPromise.resolve()
-    })
-    .catch(err => {
-      res.status(404)
-      res.send('Unauthorized')
-    })
-})
-
-server.get("/", (req, res) => {
-  integration.event(req)
-    .then(event => lambda.invoke(req.context.path, req.context.handler, event))
-    .then(result => integration.response(req, result))
-    .then(response => {
-      res.status(response.statusCode)
-      res.set(response.headers || {})  
-      if (response.body) 
-        res.send(JSON.parse(response.body))
-      res.send()
-      return BbPromise.resolve()
-    })
-    .catch(response => {
-      res.status(400)
-      res.send()
-    })
-})
-
-server.listen('4000', () => {
-  console.log('http://localhost:4000')
-})
+module.exports = Simulate
