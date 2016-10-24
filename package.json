@@ -1,23 +1,44 @@
 {
   "name": "serverless-docker",
   "version": "0.0.1",
-  "description": "",
+  "description": "This is a proof of concept to see if we can replicate Amazon API Gateway using docker images to run lambda",
   "main": "index.js",
   "scripts": {
     "install": "docker pull lambci/lambda",
     "start": "node index.js",
     "test": "curl --header \"Authorization:TOKEN 12345\" http://localhost:4000"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gertjvr/serverless-docker.git"
+  },
+  "keywords": [
+    "Serverless",
+    "Amazon Web Services",
+    "AWS",
+    "Lambda",
+    "API Gateway"
+  ],
+  "author": "Gert JvR <gertjvr@gmail.com> (https://github.com/gertjvr)",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gertjvr/serverless-docker/issues"
+  },
+  "homepage": "https://github.com/gertjvr/serverless-docker",
   "dependencies": {
     "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
     "docker-lambda": "^0.9.1",
     "express": "^4.14.0",
-    "velocityjs": "^0.9.0"
+    "serverless": "^1.0.3",
+    "velocityjs": "^0.9.0",
+    "webpack": "^1.13.2"
   },
   "devDependencies": {
-    "eslint": "^3.8.1"
+    "eslint": "^3.8.1",
+    "eslint-loader": "^1.6.0",
+    "json-loader": "^0.5.4",
+    "serverless": "^1.0.3",
+    "webpack": "^1.13.2"
   }
 }
