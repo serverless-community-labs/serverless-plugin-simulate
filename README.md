@@ -1,4 +1,4 @@
-# Serverless docker
+# Serverless docker plugin
 This is a proof of concept to see if we can replicate Amazon API Gateway using docker images to run lambda 
 
 ###Features:
