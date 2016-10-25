@@ -1,4 +1,4 @@
-# Serverless docker plugin
+# Serverless docker plugin [![Build Status](https://travis-ci.org/gertjvr/serverless-docker.svg?branch=master)](https://travis-ci.org/gertjvr/serverless-docker)
 This is a proof of concept to see if we can replicate Amazon API Gateway using docker images to run lambda 
 
 ###Features:
