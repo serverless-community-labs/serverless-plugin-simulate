@@ -1,13 +1,14 @@
+sudo: required
+services:
+  - docker
 language: node_js
 node_js:
   - "node"
-  - "6"
-  - "5"
-  - "4"
 env:
     - IS_OFFLINE=true
 before_install:
-    - "npm install -g yarn"
+    - docker pull carlad/sinatra
+    - npm install -g yarn
 install:
     - yarn
 script:
