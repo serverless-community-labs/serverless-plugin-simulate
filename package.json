@@ -4,9 +4,9 @@
   "description": "This is a proof of concept to see if we can replicate Amazon API Gateway using docker images to run lambda",
   "main": "index.js",
   "scripts": {
-    "install": "docker pull lambci/lambda",
-    "start": "sls simulate serve -p 4000",
-    "test": "curl --header \"Authorization:TOKEN 12345\" http://localhost:4000/lists"
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -17,7 +17,8 @@
     "Amazon Web Services",
     "AWS",
     "Lambda",
-    "API Gateway"
+    "API Gateway",
+    "Docker"
   ],
   "author": "Gert JvR <gertjvr@gmail.com> (https://github.com/gertjvr)",
   "license": "MIT",
@@ -30,15 +31,17 @@
     "body-parser": "^1.15.2",
     "docker-lambda": "^0.9.1",
     "express": "^4.14.0",
-    "serverless": "^1.0.3",
-    "velocityjs": "^0.9.0",
-    "webpack": "^1.13.2"
+    "velocityjs": "^0.9.0"
   },
   "devDependencies": {
     "eslint": "^3.8.1",
-    "eslint-loader": "^1.6.0",
-    "json-loader": "^0.5.4",
-    "serverless": "^1.0.3",
-    "webpack": "^1.13.2"
+    "eslint-config-airbnb": "^10.0.1",
+    "eslint-config-airbnb-base": "^5.0.2",
+    "eslint-plugin-import": "^1.13.0",
+    "eslint-plugin-jsx-a11y": "^2.1.0",
+    "eslint-plugin-react": "^6.1.1",
+    "expect": "^1.20.2",
+    "jest": "^16.0.2",
+    "serverless": "^1.0.3"
   }
 }
