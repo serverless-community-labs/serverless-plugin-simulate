@@ -1,7 +1,7 @@
 # Serverless docker plugin 
 
 [![Build Status](https://travis-ci.org/gertjvr/serverless-docker.svg?branch=master)](https://travis-ci.org/gertjvr/serverless-docker) 
-[![npm version](https://badge.fury.io/js/serverless.svg)](https://badge.fury.io/js/serverless-docker)
+[![npm version](https://badge.fury.io/js/serverless-docker.svg)](https://badge.fury.io/js/serverless-docker)
 [![Coverage Status](https://coveralls.io/repos/github/gertjvr/serverless-docker/badge.svg?branch=master)](https://coveralls.io/github/gertjvr/serverless-docker?branch=master)
 [![dependencies](https://img.shields.io/david/gertjvr/serverless-docker.svg)](https://www.npmjs.com/package/serverless-docker)
 [![license](https://img.shields.io/npm/l/serverless-docker.svg)](https://www.npmjs.com/package/serverless-docker)
