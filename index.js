@@ -9,7 +9,7 @@ class Simulate {
   constructor(serverless, options) {
     this.serverless = serverless
     this.options = options
-    
+
     Object.assign(
       this,
       run,
@@ -61,13 +61,13 @@ class Simulate {
         },
       },
     }
-  
+
     this.hooks = {
       'simulate:invoke:invoke': () => BbPromise.bind(this)
         .then(this.run)
         .then(out => this.serverless.cli.consoleLog(out)),
 
-       'simulate:serve:serve': () => BbPromise.bind(this)
+      'simulate:serve:serve': () => BbPromise.bind(this)
          .then(this.serve),
     }
   }
