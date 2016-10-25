@@ -7,7 +7,7 @@ node_js:
 env:
     - IS_OFFLINE=true
 before_install:
-    - docker pull carlad/sinatra
+    - docker pull lambci/lambda
     - npm install -g yarn
 install:
     - yarn
