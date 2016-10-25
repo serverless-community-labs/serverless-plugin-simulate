@@ -1,34 +1,34 @@
 const handler = (event, context, callback) => {
   if (!event.authorizationToken) {
-      console.error('JWT token not present')
-      context.fail('Unauthorized')
-      return
+    console.error('JWT token not present')
+    context.fail('Unauthorized')
+    return
   }
 
   if (event.authorizationToken.startsWith('TOKEN')) {
-      const tokens = event.authorizationToken.split(' ')
-      const principalId = tokens[1]
-      const apiOptions = {}
-      var tmp = event.methodArn.split(':')
-      var apiGatewayArnTmp = tmp[5].split('/')
-      var awsAccountId = tmp[4]
-      apiOptions.region = tmp[3]
-      apiOptions.restApiId = apiGatewayArnTmp[0]
-      apiOptions.stage = apiGatewayArnTmp[1]
+    const tokens = event.authorizationToken.split(' ')
+    const principalId = tokens[1]
+    const apiOptions = {}
+    const tmp = event.methodArn.split(':')
+    const apiGatewayArnTmp = tmp[5].split('/')
+    const awsAccountId = tmp[4]
+    apiOptions.region = tmp[3]
+    apiOptions.restApiId = apiGatewayArnTmp[0]
+    apiOptions.stage = apiGatewayArnTmp[1]
 
-      const policy = new AuthPolicy(principalId, awsAccountId, apiOptions)
-      policy.allowAllMethods()
-      const policyToReturn = policy.build()
-      
-      context.succeed(policyToReturn)
-      return
+    const policy = new AuthPolicy(principalId, awsAccountId, apiOptions)
+    policy.allowAllMethods()
+    const policyToReturn = policy.build()
+
+    context.succeed(policyToReturn)
+    return
   }
 
   context.fail('Unauthorized')
 }
 
 module.exports = {
-  handler, 
+  handler,
 }
 
 /* eslint-disable */

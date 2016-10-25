@@ -1,0 +1,13 @@
+{
+  "name": "serverless-docker-example",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "install": "docker pull lambci/lambda",
+    "start": "sls simulate serve -p 4000",
+    "test": "curl --header \"Authorization:TOKEN 12345\" http://localhost:4000/lists"
+  },
+  "devDependencies": {
+    "serverless": "^1.0.3"
+  }
+}
