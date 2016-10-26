@@ -8,6 +8,7 @@
     "test": "curl --header \"Authorization:TOKEN 12345\" http://localhost:4000/lists"
   },
   "devDependencies": {
-    "serverless": "^1.0.3"
+    "serverless": "^1.0.3",
+    "serverless-docker": "0.0.1"
   }
 }
