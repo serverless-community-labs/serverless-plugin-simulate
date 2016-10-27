@@ -4,15 +4,13 @@ services:
 language: node_js
 node_js:
   - "node"
-env:
-    - IS_OFFLINE=true
 before_install:
     - docker pull lambci/lambda
     - npm install -g yarn
 install:
     - yarn
 script:
-    - npm run lint
-    - npm run test -- --coverage
+    - yarn run lint
+    - yarn run test -- --coverage
 after_success:
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
