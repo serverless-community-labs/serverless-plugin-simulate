@@ -1,4 +1,4 @@
-const handler = (event, context, callback) => {
+const logHandlerInfo = (event, context) => {
   console.log(process.execPath)
   console.log(process.execArgv)
   console.log(process.argv)
@@ -20,11 +20,22 @@ const handler = (event, context, callback) => {
   context.callbackWaitsForEmptyEventLoop = false
 
   console.log(context.getRemainingTimeInMillis())
+}
+
+const proxyHandler = (event, context, callback) => {
+  logHandlerInfo(event, context)
 
   callback(null, { statusCode: 200, body: JSON.stringify([]) })
   // callback({ statusCode: 500 })
 }
 
+const vtlHandler = (event, context, callback) => {
+  logHandlerInfo(event, context)
+
+  callback(null, event)
+}
+
 module.exports = {
-  handler,
+  vtlHandler,
+  proxyHandler,
 }

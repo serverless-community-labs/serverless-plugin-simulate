@@ -14,14 +14,14 @@ functions:
     handler: functions/authorizer.handler
     type: 'TOKEN'
     identitySource: method.request.header.Authorization
-    
+
   lists:
-    handler: functions/index.handler
-    events: 
+    handler: functions/index.proxyHandler
+    events:
       - http:
           path: lists
           method: GET
-          authorizer: 
+          authorizer:
             name: authorizer
             type: 'TOKEN'
             identitySource: method.request.header.Authorization
@@ -32,3 +32,10 @@ functions:
       - http:
           path: lists
           method: PUT
+  foo:
+    handler: functions/index.vtlHandler
+    events:
+      - http:
+          path: foo
+          method: GET
+          integration: lambda
