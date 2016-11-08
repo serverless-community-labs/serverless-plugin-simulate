@@ -15,8 +15,8 @@ functions:
     type: 'TOKEN'
     identitySource: method.request.header.Authorization
 
-  lists:
-    handler: functions/index.proxyHandler
+  lambdaSuccessProxy:
+    handler: functions/index.lambdaProxySuccessHandler
     events:
       - http:
           path: lists
@@ -32,10 +32,26 @@ functions:
       - http:
           path: lists
           method: PUT
-  foo:
-    handler: functions/index.vtlHandler
+
+  lambdaErrorProxy:
+    handler: functions/index.lambdaProxyErrorHandler
     events:
       - http:
-          path: foo
+          path: lambda-proxy-error
+          method: GET
+
+  lambdaSuccess:
+    handler: functions/index.lambdaSuccessHandler
+    events:
+      - http:
+          path: lambda-success
+          method: GET
+          integration: lambda
+
+  lambdaError:
+    handler: functions/index.lambdaErrorHandler
+    events:
+      - http:
+          path: lambda-error
           method: GET
           integration: lambda

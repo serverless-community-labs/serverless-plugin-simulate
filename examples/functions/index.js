@@ -22,20 +22,33 @@ const logHandlerInfo = (event, context) => {
   console.log(context.getRemainingTimeInMillis())
 }
 
-const proxyHandler = (event, context, callback) => {
-  logHandlerInfo(event, context)
-
-  callback(null, { statusCode: 200, body: JSON.stringify([]) })
-  // callback({ statusCode: 500 })
-}
-
-const vtlHandler = (event, context, callback) => {
+const lambdaSuccessHandler = (event, context, callback) => {
   logHandlerInfo(event, context)
 
   callback(null, event)
 }
 
+const lambdaErrorHandler = (event, context, callback) => {
+  logHandlerInfo(event, context)
+
+  callback('[404] this is not the droid you are looking for')
+}
+
+const lambdaProxySuccessHandler = (event, context, callback) => {
+  logHandlerInfo(event, context)
+
+  callback(null, { statusCode: 200, body: JSON.stringify([]) })
+}
+
+const lambdaProxyErrorHandler = (event, context, callback) => {
+  logHandlerInfo(event, context)
+
+  callback(null, { statusCode: 500 })
+}
+
 module.exports = {
-  vtlHandler,
-  proxyHandler,
+  lambdaSuccessHandler,
+  lambdaErrorHandler,
+  lambdaProxySuccessHandler,
+  lambdaProxyErrorHandler,
 }
