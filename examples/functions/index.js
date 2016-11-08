@@ -1,4 +1,4 @@
-const handler = (event, context, callback) => {
+const logHandlerInfo = (event, context) => {
   console.log(process.execPath)
   console.log(process.execArgv)
   console.log(process.argv)
@@ -20,11 +20,35 @@ const handler = (event, context, callback) => {
   context.callbackWaitsForEmptyEventLoop = false
 
   console.log(context.getRemainingTimeInMillis())
+}
+
+const lambdaSuccessHandler = (event, context, callback) => {
+  logHandlerInfo(event, context)
+
+  callback(null, event)
+}
+
+const lambdaErrorHandler = (event, context, callback) => {
+  logHandlerInfo(event, context)
+
+  callback('[404] this is not the droid you are looking for')
+}
+
+const lambdaProxySuccessHandler = (event, context, callback) => {
+  logHandlerInfo(event, context)
 
   callback(null, { statusCode: 200, body: JSON.stringify([]) })
-  // callback({ statusCode: 500 })
+}
+
+const lambdaProxyErrorHandler = (event, context, callback) => {
+  logHandlerInfo(event, context)
+
+  callback(null, { statusCode: 500 })
 }
 
 module.exports = {
-  handler,
+  lambdaSuccessHandler,
+  lambdaErrorHandler,
+  lambdaProxySuccessHandler,
+  lambdaProxyErrorHandler,
 }

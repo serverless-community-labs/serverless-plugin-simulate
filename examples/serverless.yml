@@ -14,14 +14,14 @@ functions:
     handler: functions/authorizer.handler
     type: 'TOKEN'
     identitySource: method.request.header.Authorization
-    
-  lists:
-    handler: functions/index.handler
-    events: 
+
+  lambdaSuccessProxy:
+    handler: functions/index.lambdaProxySuccessHandler
+    events:
       - http:
           path: lists
           method: GET
-          authorizer: 
+          authorizer:
             name: authorizer
             type: 'TOKEN'
             identitySource: method.request.header.Authorization
@@ -32,3 +32,26 @@ functions:
       - http:
           path: lists
           method: PUT
+
+  lambdaErrorProxy:
+    handler: functions/index.lambdaProxyErrorHandler
+    events:
+      - http:
+          path: lambda-proxy-error
+          method: GET
+
+  lambdaSuccess:
+    handler: functions/index.lambdaSuccessHandler
+    events:
+      - http:
+          path: lambda-success
+          method: GET
+          integration: lambda
+
+  lambdaError:
+    handler: functions/index.lambdaErrorHandler
+    events:
+      - http:
+          path: lambda-error
+          method: GET
+          integration: lambda
