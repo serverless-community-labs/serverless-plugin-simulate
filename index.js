@@ -3,6 +3,7 @@
 const BbPromise = require('bluebird')
 
 const run = require('./lib/run')
+const config = require('./lib/config')
 const serve = require('./lib/serve')
 
 class Simulate {
@@ -12,8 +13,7 @@ class Simulate {
 
     Object.assign(
       this,
-      run,
-      serve
+      run
     )
 
     this.commands = {
@@ -70,6 +70,16 @@ class Simulate {
       'simulate:serve:serve': () => BbPromise.bind(this)
          .then(this.serve),
     }
+  }
+
+  serve() {
+    const log = (msg) => this.serverless.cli.log(msg)
+    const port = this.options.port
+    const endpoints = config.getEndpoints(this.serverless.service)
+
+    this.serverless.cli.log(`Invoke URL: http://localhost:${port}`)
+
+    return serve.start(endpoints, port, log)
   }
 }
 
