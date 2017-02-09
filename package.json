@@ -44,7 +44,6 @@
     "eslint-plugin-jsx-a11y": "^2.1.0",
     "eslint-plugin-react": "^6.1.1",
     "jest": "^16.0.2",
-    "proxyquire": "^1.7.11",
     "serverless": "^1.0.3"
   }
 }
