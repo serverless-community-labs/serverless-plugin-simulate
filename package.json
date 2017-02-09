@@ -6,7 +6,9 @@
   "scripts": {
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cover": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -29,6 +31,7 @@
   "dependencies": {
     "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
+    "cors": "^2.8.1",
     "docker-lambda": "^0.9.1",
     "express": "^4.14.0",
     "velocityjs": "^0.9.0"
