@@ -1,19 +1,20 @@
-# Serverless docker plugin 
+# Serverless docker plugin
 
 [![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
-[![Build Status](https://travis-ci.org/gertjvr/serverless-docker.svg?branch=master)](https://travis-ci.org/gertjvr/serverless-docker) 
+[![Build Status](https://travis-ci.org/gertjvr/serverless-docker.svg?branch=master)](https://travis-ci.org/gertjvr/serverless-docker)
 [![npm version](https://badge.fury.io/js/serverless-docker.svg)](https://badge.fury.io/js/serverless-docker)
 [![Coverage Status](https://coveralls.io/repos/github/gertjvr/serverless-docker/badge.svg?branch=master)](https://coveralls.io/github/gertjvr/serverless-docker?branch=master)
 [![dependencies](https://img.shields.io/david/gertjvr/serverless-docker.svg)](https://www.npmjs.com/package/serverless-docker)
 [![license](https://img.shields.io/npm/l/serverless-docker.svg)](https://www.npmjs.com/package/serverless-docker)
 
-This is a proof of concept to see if we can replicate Amazon API Gateway using docker images to run lambda 
+This is a proof of concept to see if we can replicate Amazon API Gateway using docker images to run lambda
 
 ###Features:
 
 - λ runtimes **supported** _by docker-lambda._
-- Authorizer 
-  - Custom Authorizer **supported** 
+- CORS
+- Authorizer
+  - Custom Authorizer **supported**
   - Coginito Authorizer **not implemented yet**
 - Lambda Integration
   - _Velocity templates support._ **not implemented yet**
