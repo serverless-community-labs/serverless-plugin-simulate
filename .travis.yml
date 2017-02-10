@@ -6,6 +6,8 @@ node_js:
   - "node"
 before_install:
     - docker pull lambci/lambda
+    - docker pull lambci/lambda:node4.3
+    - docker pull lambci/lambda:python2.7
     - npm install -g yarn
 install:
     - yarn
