@@ -14,14 +14,14 @@ functions:
     handler: functions/authorizer.handler
     type: 'TOKEN'
     identitySource: method.request.header.Authorization
-    
+
   lists:
     handler: functions/index.handler
-    events: 
+    events:
       - http:
           path: lists
           method: GET
-          authorizer: 
+          authorizer:
             name: authorizer
             type: 'TOKEN'
             identitySource: method.request.header.Authorization
@@ -32,3 +32,11 @@ functions:
       - http:
           path: lists
           method: PUT
+
+  currentTime:
+    handler: functions/handler.endpoint
+    runtime: python2.7
+    events:
+      - http:
+          path: ping
+          method: get
