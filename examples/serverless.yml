@@ -40,3 +40,8 @@ functions:
       - http:
           path: ping
           method: get
+
+  timeout:
+    handler: functions/timeout.handler
+    timeout: 1
+    memorySize: 128
