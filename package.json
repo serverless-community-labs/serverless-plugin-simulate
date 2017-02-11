@@ -34,6 +34,9 @@
     "cors": "^2.8.1",
     "docker-lambda": "^0.9.1",
     "express": "^4.14.0",
+    "js-string-escape": "^1.0.1",
+    "jsonpath": "^0.2.10",
+    "lodash.isplainobject": "^4.0.6",
     "morgan": "^1.8.0",
     "velocityjs": "^0.9.0"
   },
