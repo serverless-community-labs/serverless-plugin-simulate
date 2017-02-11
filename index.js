@@ -75,7 +75,7 @@ class Simulate {
   serve() {
     const log = (msg) => this.serverless.cli.log(msg)
     const port = this.options.port
-    const endpoints = config.getEndpoints(this.serverless.service)
+    const endpoints = config.getEndpoints(this.serverless)
 
     this.serverless.cli.log(`Invoke URL: http://localhost:${port}`)
 
