@@ -15,8 +15,15 @@ functions:
     type: 'TOKEN'
     identitySource: method.request.header.Authorization
 
+  error:
+    handler: functions/lambda-proxy.unhandled
+    events:
+      - http:
+          path: error
+          method: GET
+
   lists:
-    handler: functions/index.handler
+    handler: functions/lambda-proxy.success
     events:
       - http:
           path: lists
