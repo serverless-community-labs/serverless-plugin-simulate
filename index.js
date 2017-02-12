@@ -1,10 +1,30 @@
 'use strict'
 
 const BbPromise = require('bluebird')
+const path = require('path')
 
 const run = require('./lib/run')
 const config = require('./lib/config')
+const lambda = require('./lib/lambda')
 const serve = require('./lib/serve')
+
+const apiGatewayConfig = {
+  usage: 'Simulate the API Gateway and serves λ locally',
+  lifecycleEvents: [
+    'initialize',
+    'start',
+  ],
+  options: {
+    port: {
+      usage: 'Port to listen on. Default: 3000',
+      shortcut: 'p',
+    },
+    'lambda-port': {
+      usage: 'Endpoint of a lambda simulation. Optional',
+      shortcut: 'l',
+    },
+  },
+}
 
 class Simulate {
   constructor(serverless, options) {
@@ -46,15 +66,34 @@ class Simulate {
               },
             },
           },
-          serve: {
-            usage: 'Simulate the API Gateway and serves λ locally',
+          serve: apiGatewayConfig,
+          apigateway: apiGatewayConfig,
+          lambda: {
+            usage: 'Simulate the λ API',
             lifecycleEvents: [
-              'serve',
+              'start',
             ],
             options: {
               port: {
-                usage: 'Port to listen on. Default: 3000',
+                usage: 'Port to listen on. Default: 4000',
                 shortcut: 'p',
+              },
+              'db-path': {
+                usage: 'Path to store the functions database. Default: ./.simulate-lambda-db',
+                shortcut: 'd',
+              },
+            },
+          },
+          register: {
+            usage: 'Register functions with the λ API',
+            lifecycleEvents: [
+              'register',
+            ],
+            options: {
+              'lambda-port': {
+                usage: 'Endpoint of a lambda simulation. Optional',
+                shortcut: 'l',
+                required: true,
               },
             },
           },
@@ -67,20 +106,62 @@ class Simulate {
         .then(this.run)
         .then(out => this.serverless.cli.consoleLog(out)),
 
-      'simulate:serve:serve': () => BbPromise.bind(this)
-         .then(this.serve),
+      'simulate:register:register': () => BbPromise.bind(this)
+        .then(this.register),
+
+      'simulate:lambda:start': () => BbPromise.bind(this)
+        .then(this.lambda),
+
+      'simulate:serve:initialize': () => BbPromise.bind(this)
+        .then(this.apigatewayInit),
+
+      'simulate:serve:start': () => BbPromise.bind(this)
+        .then(this.apigatewayStart),
+
+      'simulate:apigateway:initialize': () => BbPromise.bind(this)
+        .then(this.apigatewayInit),
+
+      'simulate:apigateway:start': () => BbPromise.bind(this)
+        .then(this.apigatewayStart),
     }
   }
 
-  serve() {
-    const log = (msg) => this.serverless.cli.log(msg)
-    const port = this.options.port
+  apigatewayInit() {
+    const lambdaPort = this.options['lambda-port']
+
+    if (!lambdaPort) return BbPromise.resolve()
+
+    const functions = config.getFunctions(this.serverless)
+
+    return lambda.register(lambdaPort, functions, (msg) => this.serverless.cli.log(msg))
+  }
+
+  apigatewayStart() {
+    const lambdaPort = this.options['lambda-port']
+    const port = this.options.port || 3000
+
     const endpoints = config.getEndpoints(this.serverless)
+    return serve.start(endpoints, port, lambdaPort, (msg) => this.serverless.cli.log(msg))
+  }
 
-    this.serverless.cli.log(`Invoke URL: http://localhost:${port}`)
+  lambda() {
+    const defaultDbPath = path.join(this.serverless.config.servicePath, '.sls-simulate-registry')
 
-    return serve.start(endpoints, port, log)
+    const port = this.options.port || 4000
+    const dbPath = this.options['db-path'] || defaultDbPath
+
+    return lambda.start(port, dbPath, (msg) => this.serverless.cli.log(msg))
+  }
+
+  register() {
+    const functions = config.getFunctions(this.serverless)
+    const lambdaPort = this.options['lambda-port']
+
+    if (!lambdaPort) return BbPromise.reject(new Error('Lambda port is required'))
+
+    return lambda.register(lambdaPort, functions, (msg) => this.serverless.cli.log(msg))
   }
 }
+
 
 module.exports = Simulate

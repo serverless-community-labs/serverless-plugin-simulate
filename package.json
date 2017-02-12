@@ -34,7 +34,10 @@
     "cors": "^2.8.1",
     "docker-lambda": "^0.9.1",
     "express": "^4.14.0",
+    "ip": "^1.1.4",
+    "lowdb": "^0.15.4",
     "morgan": "^1.8.0",
+    "request-promise": "^4.1.1",
     "velocityjs": "^0.9.0"
   },
   "devDependencies": {
