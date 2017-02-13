@@ -1,2 +1,3 @@
 *.pyc
 npm-debug.log
+.sls-simulate-registry
