@@ -36,8 +36,11 @@
     "express": "^4.14.0",
     "js-string-escape": "^1.0.1",
     "jsonpath": "^0.2.10",
+    "ip": "^1.1.4",
+    "lowdb": "^0.15.4",
     "lodash.isplainobject": "^4.0.6",
     "morgan": "^1.8.0",
+    "request-promise": "^4.1.1",
     "velocityjs": "^0.9.0"
   },
   "devDependencies": {

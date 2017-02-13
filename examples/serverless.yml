@@ -3,8 +3,7 @@ service: docker
 provider:
   name: aws
   runtime: nodejs4.3
-  region: 'us-east-1'
-  stage: 'dev'
+  region: us-east-1
 
 plugins:
   - serverless-docker
@@ -14,6 +13,18 @@ functions:
     handler: functions/authorizer.handler
     type: 'TOKEN'
     identitySource: method.request.header.Authorization
+
+  bffHandler:
+    handler: functions/bff.handler
+    environment:
+      BFF_BACKEND_FUNC: ${self:service}-${opt:stage, self:provider.stage}-bffBackend
+    events:
+      - http:
+          path: bff
+          method: GET
+
+  bffBackend:
+    handler: functions/bff.backend
 
   error:
     handler: functions/lambda-proxy.unhandled
