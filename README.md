@@ -17,7 +17,7 @@ This is a proof of concept to see if we can replicate Amazon API Gateway using d
   - Custom Authorizer **supported**
   - Coginito Authorizer **not implemented yet**
 - Lambda Integration
-  - _Velocity templates support._ **not implemented yet**
+  - _Velocity templates support._ **supported**
 - Lambda Proxy Integration. **supported**
 
 ## Prerequisite

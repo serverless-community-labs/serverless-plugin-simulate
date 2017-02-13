@@ -11,7 +11,7 @@ const success = (event, context, callback) => {
 const error = (event, context, callback) => {
   info.log(event, context)
 
-  callback('[404] this is not the droid you are looking for')
+  callback('[409] this is not the droid you are looking for')
 }
 
 const unhandled = (event, context, callback) => {

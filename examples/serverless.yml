@@ -33,25 +33,82 @@ functions:
           path: error
           method: GET
 
-  lists:
-    handler: functions/lambda-proxy.success
+  lambda:
+    handler: functions/lambda.success
     events:
       - http:
-          path: lists
+          integration: lambda
+          path: lambda
           method: GET
           authorizer:
             name: authorizer
             type: 'TOKEN'
             identitySource: method.request.header.Authorization
       - http:
-          path: lists
+          integration: lambda
+          path: lambda
           method: POST
           authorizer: authorizer
       - http:
-          path: lists
+          integration: lambda
+          path: lambda
+          method: PUT
+          request:
+            template:
+              application/xml: '{ "stage" : "$context.stage" }'
+              application/json: '{ "httpMethod" : "$context.httpMethod" }'
+          response:
+            headers:
+              My-Header: "'some value'"
+            template: $input.path('$')
+
+  lambdaError:
+    handler: functions/lambda.error
+    events:
+      - http:
+          path: lambda/error
+          method: GET
+          request:
+            template:
+              application/xml: '{ "stage" : "$context.stage" }'
+              application/json: '{ "httpMethod" : "$context.httpMethod" }'
+          response:
+            template: $input.path('$')
+            statusCodes:
+                409:
+                    pattern: '.*"statusCode":409,.*'
+                    template:
+                      application/json: $input.path("$.errorMessage") # JSON return object
+                      application/xml: $input.path("$.errorMessage") # XML return object
+                    headers:
+                      My-Header: "'some value'"
+
+  lambdaProxy:
+    handler: functions/lambda-proxy.success
+    events:
+      - http:
+          path: lambda-proxy
+          method: GET
+          authorizer:
+            name: authorizer
+            type: 'TOKEN'
+            identitySource: method.request.header.Authorization
+      - http:
+          path: lambda-proxy
+          method: POST
+          authorizer: authorizer
+      - http:
+          path: lambda-proxy
           method: PUT
 
-  currentTime:
+  lambdaProxyError:
+    handler: functions/lambda-proxy.error
+    events:
+      - http:
+          path: lambda-proxy/error
+          method: GET
+
+  python:
     handler: functions/handler.endpoint
     runtime: python2.7
     events:
