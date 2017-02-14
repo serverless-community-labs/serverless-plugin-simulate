@@ -1,18 +1,35 @@
 sudo: required
+
 services:
   - docker
+
 language: node_js
+
 node_js:
   - "node"
+
 before_install:
     - docker pull lambci/lambda
     - docker pull lambci/lambda:nodejs4.3
     - docker pull lambci/lambda:python2.7
     - npm install -g yarn
+
 install:
     - yarn
+
 script:
     - yarn run lint
     - yarn run test -- --coverage
+
 after_success:
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
+
+deploy:
+  provider: npm
+  email: gertjvr@gmail.com
+  api_key:
+    secure: QbGmvr7ZmUzOVO3FaosR/Gqe273XuGQP0w4IG8iMsurTUGm0VZb+6Le1liXheG6XhNQdPEKC93ZEI1ASJ/w6TL5G4UwIoI2mByGwxDdrR/9BG1v8a/XZR4ckpAu8aXLmh4h2hs9205Z3qRWwFpcwRQIHVIATPLrQPK2JqzeI6ZEqDNtE5ZJapribDT1kOJ4uOEv+YXi/Uaiqv+T7zhQaeoADINv/kkgOdnZg75cO94QXq5RJuXFL5f/0nNYZIMLQ33aM+jv9nanVUcmH0i2VpTc3C2B+8YLDHB+KskMyovRK85sBMVHEYnHTyYCK6pNVoqnAMgd7AcVRN7BamnbU58RIEeigaq50iQx3N6nhMHBHramJJ+gyJwSzJHwzsP1aL8obvt3NJT4C67z1TGOB46320kGPMHxc7X69r816Q7T0jZOGon0uVh5N7kw2vyPHEQ5IuwOhwBYId50GpcxeHdQpJttwU2+yrgyYUZgvCArRffJn0vsBGKqmqHlc0Ta6lD7LYKPE0vIzuKMfI+kIg9q5PiNwe6ZDRJbnhZOOIUUdNEkh2Kvll28oiYW+qmtmUx7grVb5Meo+GdW0RxwuCb9OfZJi14W8mIktY4CAHxMu0ycBFen5Mvucs6MYNsTP6jVReYS0zzlrQ9vucdToS/Hri/m8a7jp8ImPRt4JxxQ=
+  on:
+    tags: true
+    repo: gertjvr/serverless-docker
+    branch: master
