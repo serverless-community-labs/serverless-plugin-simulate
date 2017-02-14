@@ -1,34 +1,26 @@
 sudo: required
-
 services:
-  - docker
-
+- docker
 language: node_js
-
 node_js:
-  - "node"
-
+- node
 before_install:
-    - docker pull lambci/lambda
-    - docker pull lambci/lambda:nodejs4.3
-    - docker pull lambci/lambda:python2.7
-    - npm install -g yarn
-
+- docker pull lambci/lambda
+- docker pull lambci/lambda:nodejs4.3
+- docker pull lambci/lambda:python2.7
+- npm install -g yarn
 install:
-    - yarn
-
+- yarn
 script:
-    - yarn run lint
-    - yarn run test -- --coverage
-
+- yarn run lint
+- yarn run test -- --coverage
 after_success:
-  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
-
+- cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
 deploy:
   provider: npm
   email: gertjvr@gmail.com
   api_key:
-    secure: QbGmvr7ZmUzOVO3FaosR/Gqe273XuGQP0w4IG8iMsurTUGm0VZb+6Le1liXheG6XhNQdPEKC93ZEI1ASJ/w6TL5G4UwIoI2mByGwxDdrR/9BG1v8a/XZR4ckpAu8aXLmh4h2hs9205Z3qRWwFpcwRQIHVIATPLrQPK2JqzeI6ZEqDNtE5ZJapribDT1kOJ4uOEv+YXi/Uaiqv+T7zhQaeoADINv/kkgOdnZg75cO94QXq5RJuXFL5f/0nNYZIMLQ33aM+jv9nanVUcmH0i2VpTc3C2B+8YLDHB+KskMyovRK85sBMVHEYnHTyYCK6pNVoqnAMgd7AcVRN7BamnbU58RIEeigaq50iQx3N6nhMHBHramJJ+gyJwSzJHwzsP1aL8obvt3NJT4C67z1TGOB46320kGPMHxc7X69r816Q7T0jZOGon0uVh5N7kw2vyPHEQ5IuwOhwBYId50GpcxeHdQpJttwU2+yrgyYUZgvCArRffJn0vsBGKqmqHlc0Ta6lD7LYKPE0vIzuKMfI+kIg9q5PiNwe6ZDRJbnhZOOIUUdNEkh2Kvll28oiYW+qmtmUx7grVb5Meo+GdW0RxwuCb9OfZJi14W8mIktY4CAHxMu0ycBFen5Mvucs6MYNsTP6jVReYS0zzlrQ9vucdToS/Hri/m8a7jp8ImPRt4JxxQ=
+    secure: ek+ou5IA6T2R7/Ts+BSvN6XQaTis8b9x0VGb56Q8k9E6+5YQYL9hrqM24qQFg/sTr1ckuR9/sACSPFj1w7DYLaPqAQQcwkMZVN/z0MGoTQc2/TfqqUO+aRp1R99Q84dM0n/1it6AUE2DzfcUn1eXwTqNk3fbwWOMKz/NFrCeXDzxce1+cQPANrja5kAJeBFpDKmR6IP0ddv0D9rX5FPsijCFSv45D1KrlXW51JvDA7WHUudkNo67cj+XPv74E0I4aLXdc9Nh1F7jbccdKs5UDZfL3CIw9omEgxuMS6snM5ZKivoO7E7pM2Y85fGJ662zQrDZIKiRSOwE50fuey9+2Nw5l4CYvKvdvU0PSydUuH33Sp+Oe8+z0TryNxSjei/4yw03hUGkESczse6w0yM4P2MuLnZYz7zDLgx41Msufpb44d4CIYlQWynaHfi8jT+t/++ttdxTq7dqmDrcckY8FJsaSpoVskLA6sVZSuoEzrMkWN3Po2yZthDXWlCS3bOavY3Q6iw9y+69f+sBZ4D/IWk+e2rtFMq6x0ttfahTxocLrD4MTyF04PA5H9/GDQUfyXsqbLFXt/Zq5+sq1rgkGrotIQmXjZIcOaf6DfE4Czlo7ujapdmsgs9AHbh70DRAgb64HnDhX/Un0K2GMP2rw9jBN+BkxwADEeZzHyoX0jw=
   on:
     tags: true
     repo: gertjvr/serverless-docker
