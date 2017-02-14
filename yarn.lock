@@ -232,8 +232,8 @@ babel-code-frame@^6.16.0, babel-code-frame@^6.22.0:
     js-tokens "^3.0.0"
 
 babel-core@^6.0.0, babel-core@^6.11.4, babel-core@^6.23.0:
-  version "6.23.0"
-  resolved babel-core-6.23.0.tgz#fa7978359eb86d6c871e39b36982013e16df2804
+  version "6.23.1"
+  resolved babel-core-6.23.1.tgz#c143cb621bb2f621710c220c5d579d15b8a442df
   dependencies:
     babel-code-frame "^6.22.0"
     babel-generator "^6.23.0"
@@ -242,7 +242,7 @@ babel-core@^6.0.0, babel-core@^6.11.4, babel-core@^6.23.0:
     babel-register "^6.23.0"
     babel-runtime "^6.22.0"
     babel-template "^6.23.0"
-    babel-traverse "^6.23.0"
+    babel-traverse "^6.23.1"
     babel-types "^6.23.0"
     babylon "^6.11.0"
     convert-source-map "^1.1.0"
@@ -337,9 +337,9 @@ babel-template@^6.16.0, babel-template@^6.23.0:
     babylon "^6.11.0"
     lodash "^4.2.0"
 
-babel-traverse@^6.18.0, babel-traverse@^6.23.0:
-  version "6.23.0"
-  resolved babel-traverse-6.23.0.tgz#dfee7148fc8342e4f7419251fe186947d97b00e0
+babel-traverse@^6.18.0, babel-traverse@^6.23.0, babel-traverse@^6.23.1:
+  version "6.23.1"
+  resolved babel-traverse-6.23.1.tgz#d3cb59010ecd06a97d81310065f966b699e14f48
   dependencies:
     babel-code-frame "^6.22.0"
     babel-messages "^6.23.0"
@@ -879,9 +879,16 @@ docker-lambda@^0.9.1:
   version "0.9.1"
   resolved docker-lambda-0.9.1.tgz#0e0102449df43dfcc1101fee3fd3e480e19c6b97
 
-doctrine@1.3.x, doctrine@^1.2.2:
+doctrine@1.3.x:
   version "1.3.0"
   resolved doctrine-1.3.0.tgz#13e75682b55518424276f7c173783456ef913d26
+  dependencies:
+    esutils "^2.0.2"
+    isarray "^1.0.0"
+
+doctrine@^1.2.2:
+  version "1.5.0"
+  resolved doctrine-1.5.0.tgz#379dce730f6166f76cefa4e6707a159b02c5a6fa
   dependencies:
     esutils "^2.0.2"
     isarray "^1.0.0"
