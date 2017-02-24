@@ -1,6 +1,6 @@
 {
-  "name": "serverless-docker",
-  "version": "0.0.5",
+  "name": "serverless-plugin-simulate",
+  "version": "0.0.6",
   "description": "This is a proof of concept to see if we can replicate Amazon API Gateway using docker images to run lambda",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gertjvr/serverless-docker.git"
+    "url": "git+https://github.com/gertjvr/serverless-plugin-simulate.git"
   },
   "keywords": [
     "Serverless",
@@ -25,9 +25,9 @@
   "author": "Gert JvR <gertjvr@gmail.com> (https://github.com/gertjvr)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gertjvr/serverless-docker/issues"
+    "url": "https://github.com/gertjvr/serverless-plugin-simulate/issues"
   },
-  "homepage": "https://github.com/gertjvr/serverless-docker",
+  "homepage": "https://github.com/gertjvr/serverless-plugin-simulate",
   "dependencies": {
     "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",

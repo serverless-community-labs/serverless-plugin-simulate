@@ -6,7 +6,7 @@ Welcome, and thanks in advance for your help!  Please follow these simple guidel
 
 ## When you want to start on something we need
 
-Check out our [help-wanted](https://github.com/gertjvr/serverless-docker/labels/help-wanted) label to find issues we want to move forward on with your help.
+Check out our [help-wanted](https://github.com/gertjvr/serverless-plugin-simulate/labels/help-wanted) label to find issues we want to move forward on with your help.
 
 In there you will find different issues that we think are important and need some help with. Thanks for helping us with those, we really appreciate it.
 

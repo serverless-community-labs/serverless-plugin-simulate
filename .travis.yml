@@ -23,5 +23,5 @@ deploy:
     secure: ek+ou5IA6T2R7/Ts+BSvN6XQaTis8b9x0VGb56Q8k9E6+5YQYL9hrqM24qQFg/sTr1ckuR9/sACSPFj1w7DYLaPqAQQcwkMZVN/z0MGoTQc2/TfqqUO+aRp1R99Q84dM0n/1it6AUE2DzfcUn1eXwTqNk3fbwWOMKz/NFrCeXDzxce1+cQPANrja5kAJeBFpDKmR6IP0ddv0D9rX5FPsijCFSv45D1KrlXW51JvDA7WHUudkNo67cj+XPv74E0I4aLXdc9Nh1F7jbccdKs5UDZfL3CIw9omEgxuMS6snM5ZKivoO7E7pM2Y85fGJ662zQrDZIKiRSOwE50fuey9+2Nw5l4CYvKvdvU0PSydUuH33Sp+Oe8+z0TryNxSjei/4yw03hUGkESczse6w0yM4P2MuLnZYz7zDLgx41Msufpb44d4CIYlQWynaHfi8jT+t/++ttdxTq7dqmDrcckY8FJsaSpoVskLA6sVZSuoEzrMkWN3Po2yZthDXWlCS3bOavY3Q6iw9y+69f+sBZ4D/IWk+e2rtFMq6x0ttfahTxocLrD4MTyF04PA5H9/GDQUfyXsqbLFXt/Zq5+sq1rgkGrotIQmXjZIcOaf6DfE4Czlo7ujapdmsgs9AHbh70DRAgb64HnDhX/Un0K2GMP2rw9jBN+BkxwADEeZzHyoX0jw=
   on:
     tags: true
-    repo: gertjvr/serverless-docker
+    repo: gertjvr/serverless-plugin-simulate
     branch: master

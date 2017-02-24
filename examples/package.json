@@ -1,5 +1,5 @@
 {
-  "name": "serverless-docker-example",
+  "name": "serverless-plugin-simulate-example",
   "version": "0.0.1",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,6 @@
   },
   "devDependencies": {
     "serverless": "1.0.3",
-    "serverless-docker": "0.0.5"
+    "serverless-plugin-simulate": "0.0.6"
   }
 }

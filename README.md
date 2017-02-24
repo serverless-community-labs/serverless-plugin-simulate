@@ -1,11 +1,11 @@
-# Serverless docker plugin
+# Serverless simulation plugin
 
 [![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
-[![Build Status](https://travis-ci.org/gertjvr/serverless-docker.svg?branch=master)](https://travis-ci.org/gertjvr/serverless-docker)
-[![npm version](https://badge.fury.io/js/serverless-docker.svg)](https://badge.fury.io/js/serverless-docker)
-[![Coverage Status](https://coveralls.io/repos/github/gertjvr/serverless-docker/badge.svg?branch=master)](https://coveralls.io/github/gertjvr/serverless-docker?branch=master)
-[![dependencies](https://img.shields.io/david/gertjvr/serverless-docker.svg)](https://www.npmjs.com/package/serverless-docker)
-[![license](https://img.shields.io/npm/l/serverless-docker.svg)](https://www.npmjs.com/package/serverless-docker)
+[![Build Status](https://travis-ci.org/gertjvr/serverless-plugin-simulate.svg?branch=master)](https://travis-ci.org/gertjvr/serverless-plugin-simulate)
+[![npm version](https://badge.fury.io/js/serverless-plugin-simulate.svg)](https://badge.fury.io/js/serverless-plugin-simulate)
+[![Coverage Status](https://coveralls.io/repos/github/gertjvr/serverless-plugin-simulate/badge.svg?branch=master)](https://coveralls.io/github/gertjvr/serverless-plugin-simulate?branch=master)
+[![dependencies](https://img.shields.io/david/gertjvr/serverless-plugin-simulate.svg)](https://www.npmjs.com/package/serverless-plugin-simulate)
+[![license](https://img.shields.io/npm/l/serverless-plugin-simulate.svg)](https://www.npmjs.com/package/serverless-plugin-simulate)
 
 This is a proof of concept to see if we can replicate Amazon API Gateway using docker images to run lambda
 
@@ -26,7 +26,7 @@ This is a proof of concept to see if we can replicate Amazon API Gateway using d
 ## Getting Started
 Install the plugin
 ```
-npm i --save-dev serverless-docker
+npm i --save-dev serverless-plugin-simulate
 ```
 
 Configure your service to use the plugin
@@ -38,7 +38,7 @@ provider:
   runtime: nodejs4.3 # python2.7 is also supported
 
 plugins:
-  - serverless-docker
+  - serverless-plugin-simulate
 ```
 
 If you do not need to chain functions locally
@@ -93,7 +93,7 @@ const handler = (event, context, callback) => {
 
 ## Examples
 
-See the [examples folder](https://github.com/gertjvr/serverless-docker/tree/master/examples)
+See the [examples folder](https://github.com/gertjvr/serverless-plugin-simulate/tree/master/examples)
 for examples.
 
 - `npm install` - Installs all dependencies

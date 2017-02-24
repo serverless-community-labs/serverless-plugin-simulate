@@ -6,7 +6,7 @@ provider:
   region: us-east-1
 
 plugins:
-  - serverless-docker
+  - serverless-plugin-simulate
 
 functions:
   authorizer:
