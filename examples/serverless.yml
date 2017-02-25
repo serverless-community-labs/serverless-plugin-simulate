@@ -33,6 +33,13 @@ functions:
           path: error
           method: GET
 
+  unauthorized:
+    handler: functions/lambda.success
+    events:
+      - http:
+          path: unauthorized
+          method: GET
+
   lambda:
     handler: functions/lambda.success
     events:
