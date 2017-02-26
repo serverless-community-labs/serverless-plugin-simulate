@@ -34,11 +34,12 @@ functions:
           method: GET
 
   unauthorized:
-    handler: functions/lambda.success
+    handler: functions/lambda-proxy.success
     events:
       - http:
           path: unauthorized
           method: GET
+          authorizer: authorizer
 
   lambda:
     handler: functions/lambda.success
