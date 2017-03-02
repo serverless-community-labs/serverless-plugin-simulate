@@ -23,8 +23,26 @@ module.exports.handler = (event, context, callback) => {
   const result = policyGenerator.generatePolicy(principalId, authInfo, [{
     allow: true,
     methods: [{
+      verb: 'GET',
+      resource: 'bff'
+    }],
+  }, {
+    allow: true,
+    methods: [{
+      verb: 'GET',
+      resource: 'error'
+    }],
+  }, {
+    allow: true,
+    methods: [{
       verb: '*',
-      resource: '*'
+      resource: 'lambda'
+    }],
+  }, {
+    allow: true,
+    methods: [{
+      verb: '*',
+      resource: 'lambda-proxy'
     }],
   }, {
     allow: false,
@@ -32,5 +50,9 @@ module.exports.handler = (event, context, callback) => {
       verb: 'GET',
       resource: 'unauthorized'
     }],
-  }])
+  }]);
+
+  console.log('Returning result')
+
+  callback(null, result);
 }
