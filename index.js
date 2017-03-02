@@ -133,7 +133,8 @@ class Simulate {
 
     const functions = config.getFunctions(this.serverless)
 
-    return lambda.register(lambdaPort, functions, (msg) => this.serverless.cli.log(msg))
+    const logger = this.createLogger()
+    return lambda.register(lambdaPort, functions, logger)
   }
 
   apigatewayStart() {
@@ -141,7 +142,9 @@ class Simulate {
     const port = this.options.port || 3000
 
     const endpoints = config.getEndpoints(this.serverless)
-    return serve.start(endpoints, port, lambdaPort, (msg) => this.serverless.cli.log(msg))
+
+    const logger = this.createLogger()
+    return serve.start(endpoints, port, lambdaPort, logger)
   }
 
   lambda() {
@@ -150,7 +153,8 @@ class Simulate {
     const port = this.options.port || 4000
     const dbPath = this.options['db-path'] || defaultDbPath
 
-    return lambda.start(port, dbPath, (msg) => this.serverless.cli.log(msg))
+    const logger = this.createLogger()
+    return lambda.start(port, dbPath, logger)
   }
 
   register() {
@@ -159,7 +163,16 @@ class Simulate {
 
     if (!lambdaPort) return BbPromise.reject(new Error('Lambda port is required'))
 
-    return lambda.register(lambdaPort, functions, (msg) => this.serverless.cli.log(msg))
+    const logger = this.createLogger()
+    return lambda.register(lambdaPort, functions, logger)
+  }
+
+  createLogger() {
+    return (msg) => {
+      const isObject = msg === Object(msg)
+      const message = isObject ? JSON.stringify(msg) : msg
+      this.serverless.cli.log(message)
+    }
   }
 }
 
