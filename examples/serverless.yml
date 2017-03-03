@@ -122,7 +122,15 @@ functions:
     events:
       - http:
           path: ping
-          method: get
+          method: GET
+
+  anyMethod:
+    handler: functions/lambda-proxy.success
+    events:
+      - http:
+          path: any
+          method: ANY
+
 
   timeout:
     handler: functions/timeout.handler
