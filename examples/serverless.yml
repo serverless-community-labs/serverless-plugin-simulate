@@ -8,6 +8,10 @@ provider:
 plugins:
   - serverless-plugin-simulate
 
+custom:
+  simulate:
+    services: true
+
 functions:
   authorizer:
     handler: functions/authorizer.handler

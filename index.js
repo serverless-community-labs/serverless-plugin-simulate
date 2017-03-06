@@ -7,6 +7,7 @@ const run = require('./lib/run')
 const config = require('./lib/config')
 const lambda = require('./lib/lambda')
 const serve = require('./lib/serve')
+const services = require('./lib/services')
 
 const apiGatewayConfig = {
   usage: 'Simulate the API Gateway and serves λ locally',
@@ -49,18 +50,34 @@ class Simulate {
           },
         },
         commands: {
+          services: {
+            usage: 'Start supporting services',
+            lifecycleEvents: [
+              'start',
+            ],
+            options: {
+              file: {
+                usage: 'Specify an alternate compose file. Default: docker-compose.yml',
+                shortcut: 'f',
+              },
+              host: {
+                usage: 'Docker daemon socket to connect to.',
+                shortcut: 'h',
+              },
+            },
+          },
           invoke: {
             usage: 'Run a λ function locally',
             lifecycleEvents: [
               'invoke',
             ],
             options: {
-              function: {
+              'dc-file': {
                 usage: 'Name of the function',
                 shortcut: 'f',
                 required: true,
               },
-              path: {
+              'dc-host': {
                 usage: 'Path to JSON file holding input data',
                 shortcut: 'p',
               },
@@ -103,27 +120,51 @@ class Simulate {
 
     this.hooks = {
       'simulate:invoke:invoke': () => BbPromise.bind(this)
+        .then(this.servicesStart)
         .then(this.run)
         .then(out => this.serverless.cli.consoleLog(out)),
+
+      'simulate:services:start': () => BbPromise.bind(this)
+        .then(this.servicesStart),
 
       'simulate:register:register': () => BbPromise.bind(this)
         .then(this.register),
 
       'simulate:lambda:start': () => BbPromise.bind(this)
+        .then(this.servicesStart)
         .then(this.lambda),
 
       'simulate:serve:initialize': () => BbPromise.bind(this)
         .then(this.apigatewayInit),
 
       'simulate:serve:start': () => BbPromise.bind(this)
+        .then(this.servicesStart)
         .then(this.apigatewayStart),
 
       'simulate:apigateway:initialize': () => BbPromise.bind(this)
         .then(this.apigatewayInit),
 
       'simulate:apigateway:start': () => BbPromise.bind(this)
+        .then(this.servicesStart)
         .then(this.apigatewayStart),
     }
+  }
+
+  servicesStart() {
+    const start = this.serverless.service.custom &&
+        this.serverless.service.custom.simulate &&
+        this.serverless.service.custom.simulate.services
+
+    if (!start) {
+      return
+    }
+
+    const options = {
+      file: this.options['dc-file'],
+      host: this.options['dc-host'],
+    }
+    const logger = this.createLogger()
+    services.start(options, logger)
   }
 
   apigatewayInit() {
