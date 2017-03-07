@@ -150,27 +150,10 @@ class Simulate {
     }
   }
 
-  getConfiguration() {
-     return this.serverless.service.custom &&
-        this.serverless.service.custom.simulate
-  }
-
   servicesStart() {
-    if (!this.getConfiguration().services) {
-      return
-    }
-
-    let config = this.getConfiguration().services
-    if (typeof config === 'string') {
-      config = {
-        file: config,
-      }
-    }
-
-    const options = {
-      file: config.file || this.options['dc-file'],
-      host: config.host || this.options['dc-host'],
-    }
+    const file = this.options['dc-file']
+    const host = this.options['dc-host']
+    const options = config.getServices(this.serverless, file, host)
     const logger = this.createLogger()
     services.start(options, logger)
   }
