@@ -46,7 +46,7 @@ functions:
     events:
       - http:
           integration: lambda
-          path: lambda
+          path: lambda/{part}
           method: GET
           authorizer:
             name: authorizer
@@ -95,7 +95,7 @@ functions:
     handler: functions/lambda-proxy.success
     events:
       - http:
-          path: lambda-proxy
+          path: lambda-proxy/{part}
           method: GET
           authorizer:
             name: authorizer
@@ -122,7 +122,15 @@ functions:
     events:
       - http:
           path: ping
-          method: get
+          method: GET
+
+  anyMethod:
+    handler: functions/lambda-proxy.success
+    events:
+      - http:
+          path: any/{greedy+}
+          method: ANY
+
 
   timeout:
     handler: functions/timeout.handler
