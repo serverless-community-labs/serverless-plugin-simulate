@@ -10,7 +10,7 @@ plugins:
 
 custom:
   simulate:
-    services: true
+    services: docker-compose.yml
 
 functions:
   authorizer:

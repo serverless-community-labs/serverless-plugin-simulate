@@ -150,18 +150,26 @@ class Simulate {
     }
   }
 
-  servicesStart() {
-    const start = this.serverless.service.custom &&
-        this.serverless.service.custom.simulate &&
-        this.serverless.service.custom.simulate.services
+  getConfiguration() {
+     return this.serverless.service.custom &&
+        this.serverless.service.custom.simulate
+  }
 
-    if (!start) {
+  servicesStart() {
+    if (!this.getConfiguration().services) {
       return
     }
 
+    let config = this.getConfiguration().services
+    if (typeof config === 'string') {
+      config = {
+        file: config,
+      }
+    }
+
     const options = {
-      file: this.options['dc-file'],
-      host: this.options['dc-host'],
+      file: config.file || this.options['dc-file'],
+      host: config.host || this.options['dc-host'],
     }
     const logger = this.createLogger()
     services.start(options, logger)
@@ -216,6 +224,5 @@ class Simulate {
     }
   }
 }
-
 
 module.exports = Simulate
