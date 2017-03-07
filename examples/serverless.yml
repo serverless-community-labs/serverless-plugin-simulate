@@ -8,6 +8,10 @@ provider:
 plugins:
   - serverless-plugin-simulate
 
+custom:
+  simulate:
+    services: docker-compose.yml
+
 functions:
   authorizer:
     handler: functions/authorizer.handler
