@@ -37,6 +37,11 @@ provider:
   name: aws
   runtime: nodejs4.3 # python2.7 is also supported
 
+# this is optional configurations
+custom:
+  simulate:
+    services: docker-compose.yml
+
 plugins:
   - serverless-plugin-simulate
 ```
@@ -99,7 +104,9 @@ for examples.
 - `npm install` - Installs all dependencies
 - `npm start` - Starts API Gateway simulation listening at http://localhost:5000
 - `npm run start:lambda` - Starts Lambda simulation listening at http://localhost:4000
-- `npm run start:apigateway` - Starts API Gateway simulation that uses the Lambda simulation listening at http://localhost:5000
+- `npm run start:apigateway` - Starts API Gateway simulation that uses the Lambda
+simulation listening at http://localhost:5000
+- `npm run start:services` - Starts mock services defined in `docker-compose.yml`
 - `npm test` - tests custom authorizer (Authorization:TOKEN 12345)
 
 ## Contributing
