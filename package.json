@@ -41,6 +41,7 @@
     "lowdb": "^0.15.4",
     "morgan": "^1.8.0",
     "request-promise": "^4.1.1",
+    "type-is": "^1.6.14",
     "velocityjs": "^0.9.0"
   },
   "devDependencies": {
