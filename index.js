@@ -176,7 +176,7 @@ class Simulate {
     const endpoints = config.getEndpoints(this.serverless)
 
     const logger = this.createLogger()
-    return serve.start(endpoints, port, lambdaPort, logger)
+    return serve.start(endpoints.endpoints, endpoints.corsMethodsForPath, port, lambdaPort, logger)
   }
 
   lambda() {
