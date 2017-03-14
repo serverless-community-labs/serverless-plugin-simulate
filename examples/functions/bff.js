@@ -38,6 +38,9 @@ const handler = (event, context, callback) => {
 
     callback(null, {
       statusCode: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: result.Payload
     })
   })
@@ -46,7 +49,10 @@ const handler = (event, context, callback) => {
 const backend = (event, context, callback) => {
   // info.log(event, context)
   console.log('Recieved event', event)
-  callback(null, { message: 'success' })
+  callback(null, {
+    message: 'success',
+    event,
+  })
 }
 
 module.exports = {
