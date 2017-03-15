@@ -34,7 +34,7 @@ functions:
     handler: functions/lambda-proxy.unhandled
     events:
       - http:
-          path: error
+          path: error/unhandled
           method: GET
 
   unauthorized:
@@ -78,7 +78,7 @@ functions:
     handler: functions/lambda.error
     events:
       - http:
-          path: lambda/error
+          path: error/lambda
           method: GET
           request:
             template:
@@ -117,7 +117,7 @@ functions:
     handler: functions/lambda-proxy.error
     events:
       - http:
-          path: lambda-proxy/error
+          path: error/lambda-proxy
           method: GET
 
   python:
