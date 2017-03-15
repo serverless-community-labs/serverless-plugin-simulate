@@ -49,7 +49,7 @@ plugins:
 If you do not need to chain functions locally
 you can just run the API Gateway simulation by itself.
 ```
-sls simulate apigateway start -p 5000
+sls simulate apigateway -p 5000
 ```
 
 ### Using the Lambda simulator
@@ -58,12 +58,12 @@ the Lambda Simulator.
 
 Run the Lambda Simulation
 ```
-sls simulate lambda start -p 4000
+sls simulate lambda -p 4000
 ```
 
 Run the API Gateway Simulation
 ```
-sls simulate apigateway start -p 5000 --lambda-port 4000
+sls simulate apigateway -p 5000 --lambda-port 4000
 ```
 
 Use the environment variables to configure the AWS SDK
