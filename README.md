@@ -38,8 +38,11 @@ provider:
   runtime: nodejs4.3 # python2.7 is also supported
 
 # this is optional configurations
+# servicesPathDest is use for the case u want to compile all your src and out
+# put to another folder like dist
 custom:
   simulate:
+    servicesPathDest: dist
     services: docker-compose.yml
 
 plugins:

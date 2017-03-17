@@ -31,6 +31,10 @@ class Simulate {
   constructor(serverless, options) {
     this.serverless = serverless
     this.options = options
+    if (this.serverless.service.custom && this.serverless.service.custom.simulate) {
+      const servicesPathDest = this.serverless.service.custom.simulate.servicesPathDest
+      this.servicesPathDest = (servicesPathDest) ? `/${servicesPathDest}` : ''
+    }
 
     Object.assign(
       this,
@@ -186,7 +190,7 @@ class Simulate {
     const dbPath = this.options['db-path'] || defaultDbPath
 
     const logger = this.createLogger()
-    return lambda.start(port, dbPath, logger)
+    return lambda.start(port, dbPath, logger, this.servicesPathDest)
   }
 
   register() {
