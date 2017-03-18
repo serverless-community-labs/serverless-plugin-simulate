@@ -42,7 +42,7 @@ provider:
 # put to another folder like dist
 custom:
   simulate:
-    servicesPathDest: dist
+    dist: dist
     services: docker-compose.yml
 
 plugins:

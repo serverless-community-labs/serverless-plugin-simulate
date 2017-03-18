@@ -27,14 +27,19 @@ const apiGatewayConfig = {
   },
 }
 
+function initDistConfig(serverless) {
+  let result = ''
+  if (serverless.service.custom && serverless.service.custom.simulate) {
+    const dist = serverless.service.custom.simulate.dist
+    result = (dist) ? `/${dist}` : ''
+  }
+  return result
+}
 class Simulate {
   constructor(serverless, options) {
     this.serverless = serverless
     this.options = options
-    if (this.serverless.service.custom && this.serverless.service.custom.simulate) {
-      const servicesPathDest = this.serverless.service.custom.simulate.servicesPathDest
-      this.servicesPathDest = (servicesPathDest) ? `/${servicesPathDest}` : ''
-    }
+    this.dist = initDistConfig(serverless)
 
     Object.assign(
       this,
@@ -190,7 +195,7 @@ class Simulate {
     const dbPath = this.options['db-path'] || defaultDbPath
 
     const logger = this.createLogger()
-    return lambda.start(port, dbPath, logger, this.servicesPathDest)
+    return lambda.start(port, dbPath, this.dist, logger)
   }
 
   register() {
