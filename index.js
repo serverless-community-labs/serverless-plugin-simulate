@@ -27,19 +27,14 @@ const apiGatewayConfig = {
   },
 }
 
-function initDistConfig(serverless) {
-  let result = ''
-  if (serverless.service.custom && serverless.service.custom.simulate) {
-    const dist = serverless.service.custom.simulate.dist
-    result = (dist) ? `/${dist}` : ''
-  }
-  return result
-}
 class Simulate {
   constructor(serverless, options) {
+    const customConfig = serverless.service.custom || {}
+
     this.serverless = serverless
     this.options = options
-    this.dist = initDistConfig(serverless)
+    this.simulateConfig = customConfig.simulate || {}
+    this.dist = this.simulateConfig.dist ? `/${this.simulateConfig.dist}` : ''
 
     Object.assign(
       this,
