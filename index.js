@@ -29,9 +29,11 @@ const apiGatewayConfig = {
 
 class Simulate {
   constructor(serverless, options) {
+    const customConfig = serverless.service.custom || {}
+
     this.serverless = serverless
     this.options = options
-    this.simulateConfig = (serverless.service.custom ? serverless.service.custom.simulate : null) || {}
+    this.simulateConfig = customConfig.simulate || {}
     this.dist = this.simulateConfig.dist ? `/${this.simulateConfig.dist}` : ''
 
     Object.assign(
