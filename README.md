@@ -1,10 +1,10 @@
 # Serverless simulation plugin
 
 [![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
-[![Build Status](https://travis-ci.org/gertjvr/serverless-plugin-simulate.svg?branch=master)](https://travis-ci.org/gertjvr/serverless-plugin-simulate)
+[![Build Status](https://travis-ci.org/serverless-community-labs/serverless-plugin-simulate.svg?branch=master)](https://travis-ci.org/gertjvr/serverless-plugin-simulate)
 [![npm version](https://badge.fury.io/js/serverless-plugin-simulate.svg)](https://badge.fury.io/js/serverless-plugin-simulate)
-[![Coverage Status](https://coveralls.io/repos/github/gertjvr/serverless-plugin-simulate/badge.svg?branch=master)](https://coveralls.io/github/gertjvr/serverless-plugin-simulate?branch=master)
-[![dependencies](https://img.shields.io/david/gertjvr/serverless-plugin-simulate.svg)](https://www.npmjs.com/package/serverless-plugin-simulate)
+[![Coverage Status](https://coveralls.io/repos/github/serverless-community-labs/serverless-plugin-simulate/badge.svg?branch=master)](https://coveralls.io/github/serverless-community-labs/serverless-plugin-simulate?branch=master)
+[![dependencies](https://img.shields.io/david/serverless-community-labs/serverless-plugin-simulate.svg)](https://www.npmjs.com/package/serverless-plugin-simulate)
 [![license](https://img.shields.io/npm/l/serverless-plugin-simulate.svg)](https://www.npmjs.com/package/serverless-plugin-simulate)
 
 This is a proof of concept to see if we can replicate Amazon API Gateway using docker images to run lambda
