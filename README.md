@@ -119,4 +119,4 @@ Please create an issue before submitting an Pull Request.
 This would not be possible without [lambci](http://lambci.org/)
 - [docker-lambda](https://github.com/lambci/docker-lambda) - Docker images and test runners that replicate the live AWS Lambda environment
 
-[@johncmckim](https://github.com/johncmckim) for suggesting the idea
+[@johncmckim](https://github.com/johncmckim) for suggesting the idea 
