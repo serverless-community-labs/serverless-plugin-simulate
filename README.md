@@ -112,6 +112,13 @@ simulation listening at http://localhost:5000
 - `npm run start:services` - Starts mock services defined in `docker-compose.yml`
 - `npm test` - tests custom authorizer (Authorization:TOKEN 12345)
 
+## Authors
+
+* **Gert JvR** - *Initial work* - [gertjvr](https://github.com/gertjvr)
+* **John McKim** - [johncmckim](https://github.com/johncmckim)
+
+See also the list of [contributors](https://github.com/serverless-community-labs/serverless-plugin-simulate/contributors) who participated in this project.
+
 ## Contributing
 Please create an issue before submitting an Pull Request.
 
@@ -119,4 +126,4 @@ Please create an issue before submitting an Pull Request.
 This would not be possible without [lambci](http://lambci.org/)
 - [docker-lambda](https://github.com/lambci/docker-lambda) - Docker images and test runners that replicate the live AWS Lambda environment
 
-[@johncmckim](https://github.com/johncmckim) for suggesting the idea 
+[@johncmckim](https://github.com/johncmckim) for suggesting the idea
