@@ -87,8 +87,8 @@ describe('index', () => {
       },
     }
     const options = {
-      'dc-file': 'dc-file',
-      'dc-host': 'dc-host',
+      file: 'file',
+      host: 'host',
     }
 
     const mockServices = {}
@@ -100,8 +100,8 @@ describe('index', () => {
 
     expect(config.getMockServices.mock.calls.length).toBe(1)
     expect(config.getMockServices.mock.calls[0][0]).toBe(serverless)
-    expect(config.getMockServices.mock.calls[0][1]).toBe(options['dc-file'])
-    expect(config.getMockServices.mock.calls[0][2]).toBe(options['dc-host'])
+    expect(config.getMockServices.mock.calls[0][1]).toBe(options.file)
+    expect(config.getMockServices.mock.calls[0][2]).toBe(options.host)
 
     expect(services.start.mock.calls.length).toBe(1)
     expect(services.start.mock.calls[0][0]).toBe(mockServices)
