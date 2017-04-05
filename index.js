@@ -155,8 +155,8 @@ class Simulate {
   }
 
   servicesStart() {
-    const file = this.options['dc-file']
-    const host = this.options['dc-host']
+    const file = this.options.file
+    const host = this.options.host
     const options = config.getMockServices(this.serverless, file, host)
     const logger = this.createLogger()
     services.start(options, logger)
