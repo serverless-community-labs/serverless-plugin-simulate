@@ -40,10 +40,20 @@ provider:
 # this is optional configurations
 # servicesPathDest is use for the case u want to compile all your src and out
 # put to another folder like dist
+#
+# services allows specifying a docker-compose.yml file and (optional)
+# projectName. This will start the docker-compose stack when simulate is run.
+# If projectName is specified, it will be used when running docker-compose,
+# and the default docker-compose network will be passed to lambda docker commands
+# allowing all lambdas to access any hosts defined in docker-compose services
 custom:
   simulate:
     dist: dist
-    services: docker-compose.yml
+    services:
+      file: docker-compose.yml
+      # will use: $ docker-compose --project-name myproject ...
+      # and:      $ docker --network myproject_default ...
+      projectName: myproject
 
 plugins:
   - serverless-plugin-simulate
