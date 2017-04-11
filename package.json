@@ -1,6 +1,6 @@
 {
   "name": "serverless-plugin-simulate",
-  "version": "0.0.14",
+  "version": "0.0.16",
   "description": "This is a proof of concept to see if we can replicate Amazon API Gateway using docker images to run lambda",
   "main": "index.js",
   "scripts": {

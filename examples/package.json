@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "serverless": "1.0.3",
-    "serverless-plugin-simulate": "^0.0.14"
+    "serverless-plugin-simulate": "^0.0.16"
   },
   "dependencies": {
     "api-gateway-policy-gen": "0.0.1"
