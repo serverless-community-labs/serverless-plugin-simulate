@@ -4,9 +4,9 @@
   "main": "index.js",
   "scripts": {
     "install": "docker pull lambci/lambda",
-    "start": "./node_modules/.bin/sls simulate apigateway -p 5000",
+    "start": "./node_modules/.bin/sls simulate apigateway -p 3000",
     "start:lambda": "./node_modules/.bin/sls simulate lambda -p 4000",
-    "start:apigateway": "./node_modules/.bin/sls simulate apigateway -p 5000 --lambda-port 4000",
+    "start:apigateway": "./node_modules/.bin/sls simulate apigateway -p 3000 --lambda-port 4000",
     "start:services": "./node_modules/.bin/sls simulate services",
     "test": "curl --header \"Authorization:TOKEN 12345\" http://localhost:4000/lists"
   },
