@@ -76,12 +76,12 @@ class Simulate {
               'invoke',
             ],
             options: {
-              'dc-file': {
+              function: {
                 usage: 'Name of the function',
                 shortcut: 'f',
                 required: true,
               },
-              'dc-host': {
+              path: {
                 usage: 'Path to JSON file holding input data',
                 shortcut: 'p',
               },
