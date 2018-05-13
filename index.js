@@ -2,7 +2,7 @@
 
 const BbPromise = require('bluebird')
 const path = require('path')
-
+const fs = require('fs')
 const run = require('./lib/run')
 const config = require('./lib/config')
 const lambda = require('./lib/lambda')
@@ -35,6 +35,7 @@ class Simulate {
     this.options = options
     this.simulateConfig = customConfig.simulate || {}
     this.dist = this.simulateConfig.dist ? `/${this.simulateConfig.dist}` : ''
+    this.apigatewayStarting = false
 
     Object.assign(
       this,
@@ -150,7 +151,8 @@ class Simulate {
 
       'simulate:apigateway:start': () => BbPromise.bind(this)
         .then(this.servicesStart)
-        .then(this.apigatewayStart),
+        .then(this.apigatewayStart)
+        .then(this.apigatewayRestart),
     }
   }
 
@@ -181,6 +183,25 @@ class Simulate {
 
     const logger = this.createLogger()
     return serve.start(endpoints.endpoints, endpoints.corsMethodsForPath, port, lambdaPort, logger)
+  }
+  apigatewayRestart() {
+    const logger = this.createLogger()
+    const filepath = './serverless.yml'
+    if (fs.existsSync(filepath)) {
+      logger('serverless.yml found and watching')
+      fs.watchFile(filepath, () => {
+        if (!this.apigatewayStarting) {
+          serve.stop(logger, () => {
+            this.apigatewayStarting = true
+            BbPromise.bind(this)
+            .then(this.serverless.service.load(this.serverless.processedInput.options))
+            .then(this.apigatewayInit)
+            .then(this.apigatewayStart)
+            .then(() => { this.apigatewayStarting = false })
+          })
+        }
+      })
+    }
   }
 
   lambda() {

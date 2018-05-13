@@ -19,6 +19,7 @@ This is a proof of concept to see if we can replicate Amazon API Gateway using d
 - Lambda Integration
   - _Velocity templates support._ **supported**
 - Lambda Proxy Integration. **supported**
+- Live Reload APIGateway
 
 ## Prerequisite
 - docker - https://docs.docker.com/engine/installation/
@@ -64,6 +65,8 @@ you can just run the API Gateway simulation by itself.
 ```
 sls simulate apigateway -p 5000
 ```
+Every time when you change serverless.yml file.
+API Gateway simulation will reload and you can call new Lamdba function on fly.
 
 ### Using the Lambda simulator
 If you want to chain functions locally, you need to use
