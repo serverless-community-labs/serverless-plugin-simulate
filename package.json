@@ -36,7 +36,7 @@
     "express": "^4.14.0",
     "ip": "^1.1.4",
     "js-string-escape": "^1.0.1",
-    "jsonpath": "^0.2.10",
+    "jsonpath": "^1.0.0",
     "lodash.isplainobject": "^4.0.6",
     "lowdb": "^0.15.4",
     "morgan": "^1.8.0",
