@@ -218,16 +218,14 @@ class Simulate {
   // Lifted from serverless-offline
   blockUntilSignal() {
     const waitForSigInt = new Promise(resolve =>
-      process.on('SIGINT', () => resolve('SIGINT'))
-    );
+      process.on('SIGINT', () => resolve('SIGINT')))
 
     const waitForSigTerm = new Promise(resolve =>
-      process.on('SIGTERM', () => resolve('SIGTERM'))
-    );
+      process.on('SIGTERM', () => resolve('SIGTERM')))
 
     return Promise.race([waitForSigInt, waitForSigTerm]).then(command => {
-      this.serverless.cli.log(`Got ${command} signal. Simulate Halting...`);
-    });
+      this.serverless.cli.log(`Got ${command} signal. Simulate Halting...`)
+    })
   }
 }
 
