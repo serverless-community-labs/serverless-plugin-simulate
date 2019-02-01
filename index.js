@@ -129,28 +129,32 @@ class Simulate {
         .then(out => this.serverless.cli.consoleLog(out)),
 
       'simulate:services:start': () => BbPromise.bind(this)
-        .then(this.servicesStart),
+        .then(this.servicesStart)
+        .then(this.blockUntilSignal),
 
       'simulate:register:register': () => BbPromise.bind(this)
         .then(this.register),
 
       'simulate:lambda:start': () => BbPromise.bind(this)
         .then(this.servicesStart)
-        .then(this.lambda),
+        .then(this.lambda)
+        .then(this.blockUntilSignal),
 
       'simulate:serve:initialize': () => BbPromise.bind(this)
         .then(this.apigatewayInit),
 
       'simulate:serve:start': () => BbPromise.bind(this)
         .then(this.servicesStart)
-        .then(this.apigatewayStart),
+        .then(this.apigatewayStart)
+        .then(this.blockUntilSignal),
 
       'simulate:apigateway:initialize': () => BbPromise.bind(this)
         .then(this.apigatewayInit),
 
       'simulate:apigateway:start': () => BbPromise.bind(this)
         .then(this.servicesStart)
-        .then(this.apigatewayStart),
+        .then(this.apigatewayStart)
+        .then(this.blockUntilSignal),
     }
   }
 
@@ -209,6 +213,21 @@ class Simulate {
       const message = isObject ? JSON.stringify(msg) : msg
       this.serverless.cli.log(message)
     }
+  }
+
+  // Lifted from serverless-offline
+  blockUntilSignal() {
+    const waitForSigInt = new Promise(resolve =>
+      process.on('SIGINT', () => resolve('SIGINT')),
+    );
+
+    const waitForSigTerm = new Promise(resolve =>
+      process.on('SIGTERM', () => resolve('SIGTERM')),
+    );
+
+    return Promise.race([waitForSigInt, waitForSigTerm]).then(command => {
+      this.serverless.cli.log(`Got ${command} signal. Simulate Halting...`);
+    });
   }
 }
 
