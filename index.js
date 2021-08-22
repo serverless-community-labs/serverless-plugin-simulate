@@ -19,10 +19,12 @@ const apiGatewayConfig = {
     port: {
       usage: 'Port to listen on. Default: 3000',
       shortcut: 'p',
+      type: 'string',
     },
     'lambda-port': {
       usage: 'Endpoint of a lambda simulation. Optional',
       shortcut: 'l',
+      type: 'string',
     },
   },
 }
@@ -51,6 +53,7 @@ class Simulate {
           path: {
             usage: 'Path to handlers directory',
             shortcut: 'i',
+            type: 'string',
           },
         },
         commands: {
@@ -63,10 +66,12 @@ class Simulate {
               file: {
                 usage: 'Specify an alternate compose file. Default: docker-compose.yml',
                 shortcut: 'f',
+                type: 'string',
               },
               host: {
                 usage: 'Docker daemon socket to connect to.',
                 shortcut: 'h',
+                type: 'string',
               },
             },
           },
@@ -80,10 +85,12 @@ class Simulate {
                 usage: 'Name of the function',
                 shortcut: 'f',
                 required: true,
+                type: 'string',
               },
               path: {
                 usage: 'Path to JSON file holding input data',
                 shortcut: 'p',
+                type: 'string',
               },
             },
           },
@@ -98,10 +105,12 @@ class Simulate {
               port: {
                 usage: 'Port to listen on. Default: 4000',
                 shortcut: 'p',
+                type: 'string',
               },
               'db-path': {
                 usage: 'Path to store the functions database. Default: ./.simulate-lambda-db',
                 shortcut: 'd',
+                type: 'string',
               },
             },
           },
@@ -115,6 +124,7 @@ class Simulate {
                 usage: 'Endpoint of a lambda simulation. Optional',
                 shortcut: 'l',
                 required: true,
+                type: 'string',
               },
             },
           },
